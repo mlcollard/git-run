@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# Wrapper script for git-run that always uses the --git flag
+
+# Path to the git-run script
+GIT_RUN_PATH="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)/git-run"
+
+# Check if git-run exists and is executable
+if [[ ! -x $GIT_RUN_PATH ]]; then
+    echo "Error: git-run script not found or not executable at $GIT_RUN_PATH"
+    exit 1
+fi
+
+# Pass all arguments to git-run with the --git flag
+"$GIT_RUN_PATH" --git "$@"
