@@ -139,7 +139,7 @@ main() {
         if $parallel; then
             (process "$directory" "$@") &
             ((counter++))
-            if (( counter >= "${GITRUN_JOBS:-4}" )); then
+            if (( counter >= "${GITRUN_JOBS:-$(nproc)}" )); then
                 wait -n
             fi
         else
